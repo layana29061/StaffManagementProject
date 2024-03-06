@@ -10,7 +10,7 @@ public interface StaffManagementDaoInterface {
 	public void addStaff(StaffDetails staff) throws Exception;
 	
 	//Display Staff
-	public void displayStaffDetails();
+	public void displayStaffDetails() throws Exception;
 	
 	//Update Staff
 	public void updateStaffDetails(int id,String name);

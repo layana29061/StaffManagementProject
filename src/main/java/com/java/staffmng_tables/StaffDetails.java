@@ -9,7 +9,7 @@ public class StaffDetails {
     private int yearOfExperience;
     private int salary;
     private String email;
-    private double phoneNumber;
+    private String phoneNumber;
 
     // Getters
     public int getId() {
@@ -36,7 +36,7 @@ public class StaffDetails {
     public String getEmail() {
     	return email; 
     }
-    public double getPhoneNumber() {
+    public String getPhoneNumber() {
     	return phoneNumber; 
     }
 
@@ -65,7 +65,7 @@ public class StaffDetails {
     public void setEmail(String email) {
     	this.email = email; 
     }
-    public void setPhoneNumber(double phoneNumber) { 
+    public void setPhoneNumber(String phoneNumber) { 
     	this.phoneNumber = phoneNumber; 
     }
     

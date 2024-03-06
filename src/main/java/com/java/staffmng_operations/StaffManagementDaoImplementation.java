@@ -7,8 +7,9 @@ import java.sql.ResultSet;
 import com.java.staffmng.DBConnection;
 import com.java.staffmng_tables.StaffDetails;
 
-public class StaffManagementDaoImplementation implements StaffManagementDaoInterface {
+public  class StaffManagementDaoImplementation implements StaffManagementDaoInterface {
 
+	//INSERTING INTO DATABASE
 	public void addStaff(StaffDetails staff) throws Exception {
 		Connection con = DBConnection.createDBConnection();
 		String query = "insert into staffdb values(?,?,?,?,?,?,?,?,?)";
@@ -22,7 +23,7 @@ public class StaffManagementDaoImplementation implements StaffManagementDaoInter
 		pstm.setInt(6,staff.getYearOfExperience());
 		pstm.setInt(7,staff.getSalary());
 		pstm.setString(8,staff.getEmail());
-		pstm.setDouble(9,staff.getPhoneNumber());
+		pstm.setString(9,staff.getPhoneNumber());
 		
 		int count =pstm.executeUpdate();
 		//return type of excuteUpdate is integer
@@ -45,9 +46,24 @@ public class StaffManagementDaoImplementation implements StaffManagementDaoInter
 	    }
 	}
 
-	public void displayStaffDetails() {
-		// TODO Auto-generated method stub
-		
+	public void displayStaffDetails() throws Exception{
+		Connection con = DBConnection.createDBConnection();
+	    String query = "SELECT * FROM staffdb";
+	    
+	    PreparedStatement pstm = con.prepareStatement(query);
+	    ResultSet rs = pstm.executeQuery();
+	    
+		    while (rs.next()) {
+		        System.out.println("ID: " + rs.getInt("staff_id"));
+		        System.out.println("Name: " + rs.getString("staff_name"));
+		        System.out.println("Gender: " + rs.getString("staff_gender"));
+		        System.out.println("Department: " + rs.getString("staff_department"));
+		        System.out.println("Position: " + rs.getString("staff_position"));
+		        System.out.println("Experience: " + rs.getInt("staff_YearOfExperience"));
+		        System.out.println("Salary: " + rs.getInt("staff_salary"));
+		        System.out.println("Email: " + rs.getString("staff_email"));
+		        System.out.println("PhoneNumber: " + rs.getString("staff_phonenumber"));
+		    } 
 	}
 
 	public void updateStaffDetails(int id, String name) {
