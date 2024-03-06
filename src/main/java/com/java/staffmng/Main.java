@@ -59,7 +59,7 @@ public class Main{
                     String mail = sc_string.nextLine();
  
                     System.out.println("\nEnter the pnno: ");
-                    Double phone = sc.nextDouble();
+                    String phone = sc_string.nextLine();
 
                     
                     staff.setId(id);
@@ -76,6 +76,21 @@ public class Main{
 					break;
 					
 				case 2:
+					System.out.println("Displaying the entire staff details:");
+					dao.displayStaffDetails();
+					break;
+					
+				case 3:
+					System.out.println("Updated the Staff Details:");
+					break;
+					
+				case 4:
+					System.out.println("Enter the staff id to be deleted:");
+					int Staffid=sc.nextInt();
+					dao.deleteStaffDetails(Staffid);
+					break;
+				
+				case 5:
 					System.out.println("Thank You For Using Our Application....!!!");
 					System.exit(0);
 					

@@ -29,9 +29,11 @@ public  class StaffManagementDaoImplementation implements StaffManagementDaoInte
 		//return type of excuteUpdate is integer
 		if(count!=0) {
 			System.out.println("Staff Inserted Successfully!!!");
+			 System.out.println();
 		}
 	}
 	
+	//GETTING THE LAST INSERTED ID POSITION
 	public int getLastId() throws Exception {
 	    Connection con = DBConnection.createDBConnection();
 	    String query = "SELECT staff_id FROM staffdb ORDER BY staff_id DESC LIMIT 1";
@@ -46,6 +48,7 @@ public  class StaffManagementDaoImplementation implements StaffManagementDaoInte
 	    }
 	}
 
+	//DISPLAYING THE STAFF DETAILS
 	public void displayStaffDetails() throws Exception{
 		Connection con = DBConnection.createDBConnection();
 	    String query = "SELECT * FROM staffdb";
@@ -64,6 +67,8 @@ public  class StaffManagementDaoImplementation implements StaffManagementDaoInte
 		        System.out.println("Email: " + rs.getString("staff_email"));
 		        System.out.println("PhoneNumber: " + rs.getString("staff_phonenumber"));
 		    } 
+		    System.out.println("Completed.....");
+		    System.out.println();
 	}
 
 	public void updateStaffDetails(int id, String name) {
@@ -71,11 +76,23 @@ public  class StaffManagementDaoImplementation implements StaffManagementDaoInte
 		
 	}
 
-	public void deleteStaffDetails(int id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
 	
-}
+	public void deleteStaffDetails(int id) throws Exception {
+		Connection con = DBConnection.createDBConnection();
+	    String query = "DELETE FROM staffdb WHERE staff_id = ?";
+
+	    PreparedStatement pstm = con.prepareStatement(query);
+		     pstm.setInt(1,id);
+		     
+		     int rowsAffected = pstm.executeUpdate();
+		     
+		     if (rowsAffected > 0) {
+		         System.out.println("Successfully deleted staff member with ID: " + id);
+		         System.out.println();
+		     } else {
+		         System.out.println("No staff member found with ID: " + id);
+		         System.out.println();
+		    }
+		   }
+	
+	}
